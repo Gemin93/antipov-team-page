@@ -1,0 +1,27 @@
+.button {
+  padding: 8px 16px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.buttonwhite {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.buttonBlack {
+  color: #000;
+  border: 1px solid #000;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  padding-left: 8px;
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+}
