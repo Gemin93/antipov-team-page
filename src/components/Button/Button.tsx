@@ -7,15 +7,26 @@ type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   icon?: string;
   white?: boolean;
+  className?: string;
 };
 
-export const Button = ({ children, white, icon, ...props }: ButtonProps) => {
+export const Button = ({
+  children,
+  white,
+  icon,
+  className,
+  ...props
+}: ButtonProps) => {
   return (
     <button
-      className={classNames(styles.button, {
-        [styles.buttonWhite]: white,
-        [styles.buttonBlack]: !white,
-      })}
+      className={classNames(
+        styles.button,
+        {
+          [styles.buttonWhite]: white,
+          [styles.buttonBlack]: !white,
+        },
+        className
+      )}
       {...props}
     >
       <div className={styles.buttonContent}>

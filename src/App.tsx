@@ -1,12 +1,12 @@
-import arrowDown from "./assets/arrowDown.svg";
-import { Button } from "./components/Button/Button";
+// import arrowDown from "./assets/arrowDown.svg";
+// import { Button } from "./components/Button/Button";
+import { Header } from "./components/Header/Header";
+import "./App.css";
 
 function App() {
   return (
     <>
-      <Button white={false} icon={arrowDown}>
-        Выход
-      </Button>
+      <Header />
     </>
   );
 }

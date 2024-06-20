@@ -1,0 +1,32 @@
+.header {
+  background-color: var(--color-accent);
+  /* margin-bottom: 48px; */
+  padding-bottom: 64px;
+  padding-top: 32px;
+}
+
+.title {
+  max-width: 846px;
+  margin: 0 auto;
+}
+
+.h1 {
+  font-size: 64px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.p {
+  font-size: 20px;
+}
+
+.button {
+  margin-right: 80px;
+}
+
+.buttonWrap {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
