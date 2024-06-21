@@ -1,24 +1,45 @@
+import { FC, ReactNode } from "react";
 import { Button } from "../Button/Button";
 import styles from "./Header.module.css";
+import classNames from "classnames";
 
-export const Header = () => {
+type HeaderProps = {
+  children: ReactNode;
+  componentClassName?: string;
+  homePage?: boolean;
+};
+
+export const Header: FC<HeaderProps> = ({
+  children,
+  componentClassName,
+  homePage,
+}) => {
   return (
     <>
-      <header className={styles.header}>
-        <div className={styles.buttonWrap}>
-          <Button className={styles.button} white={true}>
-            Выход
-          </Button>
-        </div>
-        <div className={styles.title}>
-          <h1 className={styles.h1}>Наша команда</h1>
-          <p className={styles.p}>
-            Это опытные специалисты, хорошо разбирающиеся во всех задачах,
-            которые ложатся на их плечи, и умеющие находить выход из любых, даже
-            самых сложных ситуаций.
-          </p>
-        </div>
-      </header>
+      {homePage ? (
+        <header className={classNames(styles.header, componentClassName)}>
+          <div className={styles.buttonWrap}>
+            <Button className={styles.button} white={true}>
+              Выход
+            </Button>
+          </div>
+          <div className={styles.payload}>{children}</div>
+        </header>
+      ) : (
+        <header className={classNames(styles.header, componentClassName)}>
+          <div className={styles.buttonWrap}>
+            <Button className={styles.button} white={true}>
+              Выход
+            </Button>
+          </div>
+          <div className={styles.payload}>{children}</div>
+          <div className={styles.buttonWrap}>
+            <Button className={styles.button} white={true}>
+              Выход
+            </Button>
+          </div>
+        </header>
+      )}
     </>
   );
 };

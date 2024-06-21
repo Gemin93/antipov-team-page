@@ -1,0 +1,14 @@
+.iconWrap {
+  width: 30px;
+  height: 28px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: end;
+}
+
+.icon {
+  width: 14px;
+  height: 12px;
+  margin: 8px;
+}
