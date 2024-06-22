@@ -12,7 +12,10 @@ export const HomePage = () => {
         <Title />
       </Header>
       <UserList />
-      <Button icon={arrowDown}> Показать ещё</Button>
+      <Button className={styles.button} icon={arrowDown}>
+        {" "}
+        Показать ещё
+      </Button>
     </>
   );
 };

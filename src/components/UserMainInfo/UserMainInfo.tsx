@@ -15,7 +15,7 @@ export const UserMainInfo = () => {
 
         <div className={styles.namesWrap}>
           <span className={styles.name}>Артур</span>
-          <span className={styles.name}>Королёв</span>
+          <span className={styles.name}> Королёв</span>
           <p className={styles.role}>Партнер</p>
         </div>
       </div>
