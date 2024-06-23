@@ -1,7 +1,7 @@
 import arrowDown from "../../assets/arrowDown.svg";
 import { Button } from "../../components/Button/Button";
 import { Header } from "../../components/Header/Header";
-import { UserList } from "../../components/UserList/UsersList";
+import { UserList } from "../../components/UsersList/UsersList";
 import { Title } from "../../components/Title/Title";
 import styles from "./HomePage.module.css";
 

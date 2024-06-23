@@ -1,23 +1,24 @@
 import { ReactionButton } from "../ReactionButton/ReactionButton";
-// import { TUser } from "../../types/types";
+import { Link } from "react-router-dom";
+import { TUser } from "../../types/types";
 import styles from "./userCard.module.css";
-import profilePhoto from "../../assets/user.png";
+// import profilePhoto from "../../assets/user.png";
 
-export const UserCard = () => {
+export const UserCard = ({ user }: { user: TUser }) => {
   return (
     <>
-      <div className={styles.card}>
+      <Link to={"/userDetail/1"} className={styles.card}>
         <div className={styles.photoWrap}>
-          <img src={profilePhoto} alt="user photo" />
+          <img src={user.avatar} alt="user photo" />
         </div>
         <div className={styles.name}>
-          <span>Jonh</span>
-          <span>Doe</span>
+          <span>{user.first_name}</span>
+          <span> {user.last_name}</span>
         </div>
         <div className={styles.buttonWrap}>
           <ReactionButton />
         </div>
-      </div>
+      </Link>
     </>
   );
 };

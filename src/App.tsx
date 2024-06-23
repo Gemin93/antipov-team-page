@@ -13,7 +13,3 @@ export const App = () => {
     </Router>
   );
 };
-<>
-  <HomePage />
-  <UserPage />
-</>;
