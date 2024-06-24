@@ -1,3 +1,5 @@
+import styles from "./Input.module.css";
+
 type InputProps = {
   label: string;
   type: "text" | "email" | "password";
@@ -8,11 +10,23 @@ type InputProps = {
 export const Input = ({ label, type, icon, iconAsset }: InputProps) => {
   return (
     <>
-      <label htmlFor={label}>{label}</label>
-      {type === "text" && <input type="text" placeholder="Артур" />}
-      {type === "email" && <input type="email" placeholder="example@mail.ru" />}
-      {type === "password" && <input type="password" placeholder="******" />}
-      {icon && <img src={iconAsset} />}
+      <label className={styles.label} htmlFor={label}>
+        {label}
+      </label>
+      {type === "text" && (
+        <input className={styles.input} type="text" placeholder="Артур" />
+      )}
+      {type === "email" && (
+        <input
+          className={styles.input}
+          type="email"
+          placeholder="example@mail.ru"
+        />
+      )}
+      {type === "password" && (
+        <input className={styles.input} type="password" placeholder="******" />
+      )}
+      {icon && <img className={styles.icon} src={iconAsset} />}
     </>
   );
 };
