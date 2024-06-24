@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import { Button } from "../Button/Button";
+import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import classNames from "classnames";
 
@@ -14,6 +15,12 @@ export const Header: FC<HeaderProps> = ({
   componentClassName,
   homePage,
 }) => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <>
       {homePage ? (
@@ -28,7 +35,7 @@ export const Header: FC<HeaderProps> = ({
       ) : (
         <header className={classNames(styles.header, componentClassName)}>
           <div className={styles.buttonWrap}>
-            <Button className={styles.button} white={true}>
+            <Button className={styles.button} white={true} onClick={handleBack}>
               Назад
             </Button>
           </div>

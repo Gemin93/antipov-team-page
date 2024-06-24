@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store";
 import { setUsers } from "../../features/users/usersSlice";
-// import { TUser } from "../../types/types";
 import { UserCard } from "../UserCard/UserCard";
 import styles from "./UsersList.module.css";
 
@@ -19,7 +18,6 @@ export const UserList = () => {
 
     fetchUsers();
   }, [dispatch]);
-  console.log(users);
 
   return (
     <>
