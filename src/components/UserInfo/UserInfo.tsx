@@ -1,4 +1,5 @@
 import { generatePhoneNumber } from "../../utils/genPhoneNumber";
+import { lorem } from "../../utils/genParagraphs";
 import styles from "./UserInfo.module.css";
 import phone from "../../assets/phone.svg";
 import mail from "../../assets/mail.svg";
@@ -9,7 +10,7 @@ export const UserInfo = ({ user }: { user: TUser }) => {
     <>
       <div className={styles.container}>
         <div className={styles.content}>
-          <p className={styles.description}>описание</p>
+          <p className={styles.description}>{lorem.generateParagraphs(4)}</p>
           <div className={styles.contacts}>
             <div className={styles.contactItem}>
               <img className={styles.icon} src={phone} alt="phone icon" />

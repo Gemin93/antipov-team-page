@@ -1,23 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store";
-import { setUsers } from "../../features/users/usersSlice";
+import { setUsers, addUsers } from "../../features/users/usersSlice";
+import { Button } from "../../components/Button/Button";
 import { UserCard } from "../UserCard/UserCard";
+import arrowDown from "../../assets/arrowDown.svg";
 import styles from "./UsersList.module.css";
 
 export const UserList = () => {
   const dispatch: AppDispatch = useDispatch();
   const users = useSelector((state: RootState) => state.users.users);
+  const [page, setPage] = useState(1);
+
+  const fetchUsers = async (page: number) => {
+    const response = await fetch(
+      `https://reqres.in/api/users?page=${page}&per_page=8`
+    );
+    const data = await response.json();
+    return data.data;
+  };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch("https://reqres.in/api/users?per_page=8");
-      const data = await response.json();
-      dispatch(setUsers(data.data));
+    const loadUsers = async () => {
+      const initialUsers = await fetchUsers(1);
+      dispatch(setUsers(initialUsers));
     };
 
-    fetchUsers();
+    loadUsers();
   }, [dispatch]);
+
+  const handleLoadUsers = async () => {
+    const nextPage = page + 1;
+    const newUsers = await fetchUsers(nextPage);
+    dispatch(addUsers(newUsers));
+    setPage(nextPage);
+  };
 
   return (
     <>
@@ -26,6 +43,13 @@ export const UserList = () => {
           return <UserCard key={user.id} user={user} />;
         })}
       </div>
+      <Button
+        className={styles.button}
+        icon={arrowDown}
+        onClick={handleLoadUsers}
+      >
+        Показать ещё
+      </Button>
     </>
   );
 };

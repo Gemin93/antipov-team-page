@@ -1,5 +1,3 @@
-import arrowDown from "../../assets/arrowDown.svg";
-import { Button } from "../../components/Button/Button";
 import { Header } from "../../components/Header/Header";
 import { UserList } from "../../components/UsersList/UsersList";
 import { Title } from "../../components/Title/Title";
@@ -12,10 +10,6 @@ export const HomePage = () => {
         <Title />
       </Header>
       <UserList />
-      <Button className={styles.button} icon={arrowDown}>
-        {" "}
-        Показать ещё
-      </Button>
     </>
   );
 };
