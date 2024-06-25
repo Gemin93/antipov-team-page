@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { registerUser, loginUser } from "../../authSlice";
 import { FormField } from "../FormField/FormField";
 
 import styles from "./Form.module.css";
@@ -22,13 +24,14 @@ const schema = yup.object().shape({
     .required("Пароль обязателен"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Пароли должны совподать")
+    .oneOf([yup.ref("password"), undefined], "Пароли должны совподать")
     .required("Пароли не совпадают"),
 });
 
 type FormData = yup.InferType<typeof schema>;
 
 export const Form = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -36,7 +39,11 @@ export const Form = () => {
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    if (data.confirmPassword) {
+      dispatch(registerUser(data));
+    } else {
+      dispatch(loginUser({ email: data.email, password: data.password }));
+    }
   };
 
   return (
