@@ -1,3 +1,4 @@
+import React from "react";
 import { MouseEventHandler, ReactNode } from "react";
 import classNames from "classnames";
 import styles from "./ButtonForm.module.css";
@@ -8,7 +9,7 @@ type ButtonProps = {
   icon?: string;
   white?: boolean;
   className?: string;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const ButtonForm = ({
   children,

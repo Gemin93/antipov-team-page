@@ -28,3 +28,8 @@
   margin-top: 0;
   margin-bottom: 16px;
 }
+
+.button {
+  background-color: var(--color-accent);
+  width: 100%;
+}

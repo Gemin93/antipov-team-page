@@ -4,7 +4,12 @@
   margin-bottom: 8px;
 }
 
+.inputWrapper {
+  width: 100%;
+  text-align: left;
+}
 .input {
+  box-sizing: border-box;
   font-size: 14px;
   line-height: 17px;
   color: #000;
@@ -14,8 +19,15 @@
   border: none;
   width: 100%;
   margin-bottom: 16px;
+  margin-top: 8px;
 }
 
 .input::placeholder {
   color: #808185;
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+  margin-left: 10px;
 }
