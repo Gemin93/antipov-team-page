@@ -1,9 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../authSlice";
 import { FormField } from "../FormField/FormField";
 import styles from "./Form.module.css";
 
@@ -19,7 +17,7 @@ const schema = yup.object().shape({
     .required("Email обязателен"),
   password: yup
     .string()
-    .min(6, "Пароль должен быть не менее 6 символов")
+    .min(5, "Пароль должен быть не менее 6 символов")
     .required("Пароль обязателен"),
   confirmPassword: yup
     .string()
@@ -35,18 +33,32 @@ export const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
-    const { email, password } = data;
-    console.log("email: ", email);
-    console.log("password: ", password);
     try {
-      await dispatch(registerUser({ email, password }));
-      navigate("/");
+      const response = await fetch("https://reqres.in/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        localStorage.setItem("token", responseData.token);
+        alert("Регистрация прошла успешно!");
+        navigate("/"); // Перенаправление на главную страницу
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error || "Произошла ошибка при регистрации");
+      }
     } catch (error) {
-      alert("Произошла ошибка при регистрации");
+      alert("Произошла ошибка при выполнении запроса");
     }
   };
 
