@@ -1,33 +1,31 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { UserPage } from "./pages/UserPage/UserPage";
-import { AuthPage } from "./pages/AuthPage/AuthPage";
-import { useSelector } from "react-redux";
-import { RootState } from "./app/store";
+import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
+import { ProtectedRoute } from "./features/auth/components/ProtectedRoute/ProtectedRoute";
 import "./App.css";
 
 export const App = () => {
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
-  );
-
   return (
     <Router>
       <Routes>
+        <Route path="/register" element={<RegisterPage />} />
         <Route
           path="/"
-          element={isAuthenticated ? <HomePage /> : <Navigate to="/auth" />}
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/userDetail/:userId"
-          element={isAuthenticated ? <UserPage /> : <Navigate to="/auth" />}
+          element={
+            <ProtectedRoute>
+              <UserPage />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/auth" element={<AuthPage />} />
       </Routes>
     </Router>
   );

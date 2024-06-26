@@ -1,6 +1,6 @@
 import { Form } from "../../features/auth/components/Form/Form";
 
-export const AuthPage = () => {
+export const RegisterPage = () => {
   return (
     <>
       <Form />
