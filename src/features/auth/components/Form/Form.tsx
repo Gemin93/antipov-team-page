@@ -4,6 +4,9 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { FormField } from "../FormField/FormField";
 import styles from "./Form.module.css";
+// import supbase from "../../../../app/supbaseClient";
+
+import { useSignUpEmailPassword } from "@nhost/react";
 
 // Схема валидации с использованием yup
 const schema = yup.object().shape({
@@ -34,33 +37,17 @@ export const Form = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
   const navigate = useNavigate();
+  const { signUpEmailPassword, isSuccess } = useSignUpEmailPassword();
 
   const onSubmit = async (data: FormData) => {
-    try {
-      const response = await fetch("https://reqres.in/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-        }),
-      });
+    const { email, password } = data;
 
-      if (response.ok) {
-        const responseData = await response.json();
-        localStorage.setItem("token", responseData.token);
-        alert("Регистрация прошла успешно!");
-        navigate("/"); // Перенаправление на главную страницу
-      } else {
-        const errorData = await response.json();
-        alert(errorData.error || "Произошла ошибка при регистрации");
-      }
-    } catch (error) {
-      alert("Произошла ошибка при выполнении запроса");
-    }
+    signUpEmailPassword(email, password);
   };
+
+  if (isSuccess) {
+    return navigate("/");
+  }
 
   return (
     <div className={styles.formWrapper}>
