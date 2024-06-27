@@ -21,12 +21,21 @@ export const Header: FC<HeaderProps> = ({
     navigate("/");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/register");
+  };
+
   return (
     <>
       {homePage ? (
         <header className={classNames(styles.header, componentClassName)}>
           <div className={styles.buttonWrap}>
-            <Button className={styles.button} white={true}>
+            <Button
+              className={styles.button}
+              white={true}
+              onClick={handleLogout}
+            >
               Выход
             </Button>
           </div>
@@ -41,7 +50,11 @@ export const Header: FC<HeaderProps> = ({
           </div>
           <div className={styles.payload}>{children}</div>
           <div className={styles.buttonWrap}>
-            <Button className={styles.button} white={true}>
+            <Button
+              className={styles.button}
+              white={true}
+              onClick={handleLogout}
+            >
               Выход
             </Button>
           </div>
