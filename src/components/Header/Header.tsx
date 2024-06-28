@@ -1,6 +1,8 @@
 import { FC, ReactNode } from "react";
 import { Button } from "../Button/Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../../store/auth/authSlice";
 import styles from "./Header.module.css";
 import classNames from "classnames";
 
@@ -16,14 +18,10 @@ export const Header: FC<HeaderProps> = ({
   homePage,
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleBack = () => {
     navigate("/");
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/register");
   };
 
   return (
@@ -34,7 +32,9 @@ export const Header: FC<HeaderProps> = ({
             <Button
               className={styles.button}
               white={true}
-              onClick={handleLogout}
+              onClick={() => {
+                dispatch(removeUser());
+              }}
             >
               Выход
             </Button>
@@ -53,7 +53,9 @@ export const Header: FC<HeaderProps> = ({
             <Button
               className={styles.button}
               white={true}
-              onClick={handleLogout}
+              onClick={() => {
+                dispatch(removeUser());
+              }}
             >
               Выход
             </Button>

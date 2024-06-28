@@ -1,31 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
-import { supabase } from "../../../../app/supbaseClient";
+import { useAuth } from "../../../../hooks/use-auth";
 
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const { isAuth } = useAuth();
 
-  useEffect(() => {
-    const checkUser = async () => {
-      const user = await supabase.auth.getUser();
-      if (user) {
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
-      setLoading(false);
-    };
-
-    checkUser();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to="/signIn" />;
+  if (!isAuth) {
+    return <Navigate to="/login" />;
   }
 
   return <>{children}</>;

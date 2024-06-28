@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../app/store";
-import { setUser } from "../../features/user/userSlice";
+import { RootState, AppDispatch } from "../../store/store";
+import { setUser } from "../../store/user/userSlice";
 import { useParams } from "react-router-dom";
 
 import { Header } from "../../components/Header/Header";

@@ -33,3 +33,7 @@
   background-color: var(--color-accent);
   width: 100%;
 }
+
+.link {
+  text-align: center;
+}

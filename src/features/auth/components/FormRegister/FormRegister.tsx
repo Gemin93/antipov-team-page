@@ -1,12 +1,9 @@
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 import { FormField } from "../FormField/FormField";
-import styles from "./Form.module.css";
-// import supbase from "../../../../app/supbaseClient";
-
-import { useSignUpEmailPassword } from "@nhost/react";
+import styles from "./FormRegister.module.css";
 
 // Схема валидации с использованием yup
 const schema = yup.object().shape({
@@ -29,29 +26,23 @@ const schema = yup.object().shape({
 });
 
 type FormData = yup.InferType<typeof schema>;
+type onSubmitType = (email: string, password: string) => void;
 
-export const Form = () => {
+export const FormRegister = ({ onSubmit }: { onSubmit: onSubmitType }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
-  const navigate = useNavigate();
-  const { signUpEmailPassword, isSuccess } = useSignUpEmailPassword();
 
-  const onSubmit = async (data: FormData) => {
-    const { email, password } = data;
-
-    signUpEmailPassword(email, password);
+  const handleFormSubmit = async (dataForm: FormData) => {
+    const { email, password } = dataForm;
+    onSubmit(email, password);
   };
-
-  if (isSuccess) {
-    return navigate("/");
-  }
 
   return (
     <div className={styles.formWrapper}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(handleFormSubmit)}>
         <p className={styles.h2}>Регистрация</p>
         <FormField
           label="Имя"
@@ -86,8 +77,11 @@ export const Form = () => {
           error={errors.confirmPassword?.message}
         />
         <button className={styles.button} type="submit">
-          Отправить
+          Зарегистрироваться
         </button>
+        <p className={styles.link}>
+          Уже есть аккаунт? <Link to="/login"> Войдите</Link>
+        </p>
       </form>
     </div>
   );

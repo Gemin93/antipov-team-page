@@ -1,16 +1,15 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../../hooks/redux-hooks";
 import { setUser } from "../../../../store/auth/authSlice";
+import { FormLogin } from "../FormLogin/FormLogin";
+import { useAppDispatch } from "../../../../hooks/redux-hooks";
 
-import { FormRegister } from "../FormRegister/FormRegister";
-
-export const SignUp = () => {
+export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleRegister = (email: string, password: string) => {
+  const handleLogin = (email: string, password: string) => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
           setUser({
@@ -23,5 +22,5 @@ export const SignUp = () => {
       })
       .catch((error) => alert(error));
   };
-  return <FormRegister onSubmit={handleRegister} />;
+  return <FormLogin onSubmit={handleLogin} />;
 };

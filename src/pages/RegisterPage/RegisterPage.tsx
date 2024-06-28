@@ -1,11 +1,9 @@
-// import { Form } from "../../features/auth/components/Form/Form";
-
-import { SignIn } from "../../features/auth/components/SignIn/SignIn";
+import { SignUp } from "../../features/auth/components/SignUp/SignUp";
 
 export const RegisterPage = () => {
   return (
-    <>
-      <SignIn />
-    </>
+    <div>
+      <SignUp />
+    </div>
   );
 };
