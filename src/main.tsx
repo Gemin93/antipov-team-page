@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { store } from "./app/store.ts";
+import { store } from "./store/store.ts";
 import { Provider } from "react-redux";
 import { App } from "./App.tsx";
+import "./firebase.ts";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

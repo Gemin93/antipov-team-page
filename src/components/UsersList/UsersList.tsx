@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../app/store";
-import { setUsers, addUsers } from "../../features/users/usersSlice";
+import { RootState, AppDispatch } from "../../store/store";
+import { setUsers, addUsers } from "../../store/users/usersSlice";
 import { Button } from "../../components/Button/Button";
 import { UserCard } from "../UserCard/UserCard";
 import arrowDown from "../../assets/arrowDown.svg";

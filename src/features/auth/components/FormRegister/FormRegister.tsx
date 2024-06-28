@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 import { FormField } from "../FormField/FormField";
-import styles from "./Form.module.css";
+import styles from "./FormRegister.module.css";
 
 // Схема валидации с использованием yup
 const schema = yup.object().shape({
@@ -26,45 +26,23 @@ const schema = yup.object().shape({
 });
 
 type FormData = yup.InferType<typeof schema>;
+type onSubmitType = (email: string, password: string) => void;
 
-export const Form = () => {
+export const FormRegister = ({ onSubmit }: { onSubmit: onSubmitType }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
-  const navigate = useNavigate();
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      const response = await fetch("https://reqres.in/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-        }),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        localStorage.setItem("token", responseData.token);
-        alert("Регистрация прошла успешно!");
-        navigate("/"); // Перенаправление на главную страницу
-      } else {
-        const errorData = await response.json();
-        alert(errorData.error || "Произошла ошибка при регистрации");
-      }
-    } catch (error) {
-      alert("Произошла ошибка при выполнении запроса");
-    }
+  const handleFormSubmit = async (dataForm: FormData) => {
+    const { email, password } = dataForm;
+    onSubmit(email, password);
   };
 
   return (
     <div className={styles.formWrapper}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(handleFormSubmit)}>
         <p className={styles.h2}>Регистрация</p>
         <FormField
           label="Имя"
@@ -99,8 +77,11 @@ export const Form = () => {
           error={errors.confirmPassword?.message}
         />
         <button className={styles.button} type="submit">
-          Отправить
+          Зарегистрироваться
         </button>
+        <p className={styles.link}>
+          Уже есть аккаунт? <Link to="/login"> Войдите</Link>
+        </p>
       </form>
     </div>
   );
