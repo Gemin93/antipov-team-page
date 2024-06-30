@@ -2,8 +2,21 @@
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 56px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.button {
+  margin-bottom: 70px;
+}
+
+@media (max-width: 790px) {
+  .listWrapper {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
 }

@@ -43,13 +43,15 @@ export const Header: FC<HeaderProps> = ({
         </header>
       ) : (
         <header className={classNames(styles.header, componentClassName)}>
-          <div className={styles.buttonWrap}>
+          <div className={classNames(styles.buttonWrap, styles.back)}>
             <Button className={styles.button} white={true} onClick={handleBack}>
               Назад
             </Button>
           </div>
-          <div className={styles.payload}>{children}</div>
-          <div className={styles.buttonWrap}>
+          <div className={classNames(styles.payload, styles.second)}>
+            {children}
+          </div>
+          <div className={classNames(styles.buttonWrap, styles.exit)}>
             <Button
               className={styles.button}
               white={true}

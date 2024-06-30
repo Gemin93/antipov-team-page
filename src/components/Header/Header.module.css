@@ -7,6 +7,12 @@
 .payload {
   flex: 1;
 }
+.second {
+  grid-area: second;
+  align-self: center;
+  justify-self: center;
+  grid-column: 1/-1;
+}
 
 .title {
   max-width: 846px;
@@ -16,5 +22,20 @@
 .buttonWrap {
   display: flex;
   align-items: center;
+  /* justify-content: end; */
+}
+.back {
+  grid-area: first;
+  justify-content: start;
+}
+.exit {
+  grid-area: third;
   justify-content: end;
+}
+
+@media (max-width: 790px) {
+  .header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

@@ -6,10 +6,13 @@
 .content {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap-reverse;
   color: #000;
   gap: 129px;
   font-size: 16px;
   line-height: 130%;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .description {
@@ -29,4 +32,11 @@
   width: 22px;
   height: 22px;
   margin-right: 10px;
+}
+
+@media (max-width: 790px) {
+  .content {
+    flex-wrap: wrap-reverse;
+    gap: 11px;
+  }
 }
