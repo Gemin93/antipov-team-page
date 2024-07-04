@@ -3,7 +3,7 @@ import classNames from "classnames";
 import styles from "./Button.module.css";
 
 type ButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   icon?: string;
   white?: boolean;

@@ -1,18 +1,9 @@
-.userPage {
+/* .userPage {
   display: grid;
   grid-template-columns: 80px auto 80px;
   align-items: start;
-  grid-template-areas: "first second first";
-  padding-top: 39px;
+  grid-template-areas: "back content exit";
+  padding-top: 32px;
   padding-bottom: 39px;
   margin-bottom: 50px;
-}
-
-@media (max-width: 475px) {
-  .userPage {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "first third"
-      "second second";
-  }
-}
+} */

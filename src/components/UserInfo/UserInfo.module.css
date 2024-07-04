@@ -1,12 +1,11 @@
 .container {
   max-width: 946px;
-  margin: 0 auto 30px;
+  margin-left: 190px;
 }
 
 .content {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap-reverse;
   color: #000;
   gap: 129px;
   font-size: 16px;
@@ -17,8 +16,6 @@
 
 .description {
   max-width: 630px;
-  margin: 0;
-
   text-align: left;
 }
 
@@ -38,5 +35,8 @@
   .content {
     flex-wrap: wrap-reverse;
     gap: 11px;
+  }
+  .container {
+    margin-left: 0;
   }
 }

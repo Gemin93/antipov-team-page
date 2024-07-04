@@ -3,14 +3,16 @@
   justify-content: start;
   flex-wrap: wrap-reverse;
   margin-left: 29px;
+  margin-top: 7px;
+  gap: 16px;
 }
 
 .photoWrap {
   height: 187px;
   width: 187px;
   border-radius: 50%;
-  margin-right: 32px;
   overflow: hidden;
+  margin-right: 16px;
 }
 
 .userPhoto {
@@ -40,8 +42,18 @@
   }
 }
 
-@media (max-width: 659px) {
+@media (max-width: 790px) {
+  .wrapper {
+    justify-content: center;
+    margin-left: 0;
+  }
   .role {
-    margin-bottom: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 659px) {
+  .wrapper {
+    justify-content: center;
   }
 }

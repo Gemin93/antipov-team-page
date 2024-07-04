@@ -5,7 +5,6 @@
 
 .h1 {
   font-size: 64px;
-  margin-bottom: 16px;
   font-weight: 400;
   margin: 0;
 }
@@ -13,7 +12,8 @@
 .p {
   font-size: 20px;
   margin-bottom: 0;
-  margin-top: 38px;
+  line-height: 23px;
+  margin-top: 16px;
 }
 
 @media (max-width: 790px) {

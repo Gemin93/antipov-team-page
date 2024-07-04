@@ -10,7 +10,11 @@ export const UserInfo = ({ user }: { user: TUser }) => {
     <>
       <div className={styles.container}>
         <div className={styles.content}>
-          <p className={styles.description}>{lorem.generateParagraphs(4)}</p>
+          <div>
+            <p className={styles.description}>{lorem.generateParagraphs(2)}</p>
+            <p className={styles.description}>{lorem.generateParagraphs(1)}</p>
+            <p className={styles.description}>{lorem.generateParagraphs(1)}</p>
+          </div>
           <div className={styles.contacts}>
             <div className={styles.contactItem}>
               <img className={styles.icon} src={phone} alt="phone icon" />
