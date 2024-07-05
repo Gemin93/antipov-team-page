@@ -6,6 +6,7 @@ import { removeUser } from "../../store/auth/authSlice";
 import styles from "./Header.module.css";
 import classNames from "classnames";
 import exit from "../../assets/exit.svg";
+import back from "../../assets/arrowLeft.svg";
 
 type HeaderProps = {
   children: ReactNode;
@@ -73,21 +74,45 @@ export const Header: FC<HeaderProps> = ({
           )}
         >
           <div className={classNames(styles.buttonWrap, styles.back)}>
-            <Button className={styles.button} white={true} onClick={handleBack}>
-              Назад
-            </Button>
+            {isMobile ? (
+              <Button
+                className={styles.buttonMobile}
+                white={true}
+                onClick={handleBack}
+                icon={back}
+              ></Button>
+            ) : (
+              <Button
+                className={styles.button}
+                white={true}
+                onClick={handleBack}
+              >
+                Назад
+              </Button>
+            )}
           </div>
           <div className={classNames(styles.content)}>{children}</div>
           <div className={classNames(styles.buttonWrap, styles.exit)}>
-            <Button
-              className={styles.button}
-              white={true}
-              onClick={() => {
-                dispatch(removeUser());
-              }}
-            >
-              Выход
-            </Button>
+            {isMobile ? (
+              <Button
+                className={styles.buttonMobile}
+                white={true}
+                onClick={() => {
+                  dispatch(removeUser());
+                }}
+                icon={exit}
+              ></Button>
+            ) : (
+              <Button
+                className={styles.button}
+                white={true}
+                onClick={() => {
+                  dispatch(removeUser());
+                }}
+              >
+                Выход
+              </Button>
+            )}
           </div>
         </header>
       )}
